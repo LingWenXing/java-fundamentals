@@ -122,4 +122,6 @@ public class ArraysType {
 		System.out.println();
 		ThreeDimensionDynamicArrays();
 	}
+	
+	
 }
