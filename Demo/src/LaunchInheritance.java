@@ -1,3 +1,18 @@
+class Demo1{
+	final int a = 10;
+	void disp() {
+		System.out.println("Inside Demo1");
+	}
+}
+
+class Demo2 extends Demo1{
+	int a = 100;
+	void disp() {
+		System.out.println(a);
+		System.out.println("Inside Demo2");
+	}
+}
+
 class Base{
 	int a = 10;
 	int b = 20;
@@ -36,8 +51,10 @@ class Child extends Base{
 public class LaunchInheritance {
 
 	public static void main(String[] args) {
-		Child d = new Child();
-		d.display();
+//		Child d = new Child();
+//		d.display();
+		Demo2 d1 = new Demo2();
+		d1.disp();
 	}
 
 }
