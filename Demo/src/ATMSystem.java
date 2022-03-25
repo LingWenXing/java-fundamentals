@@ -22,7 +22,7 @@ class ATM{
 			System.out.println("Collect your $$$");
 		}else {
 			InvalidCredentialsException ice = new InvalidCredentialsException();
-			System.out.println(ice.getMessage());
+			System.out.println(ice.getMessage() + " - Message display in ATM");
 			throw ice;
 		}
 	}
@@ -35,7 +35,7 @@ class Bank{
 		try {
 			atm.verify();
 		}catch(InvalidCredentialsException ice) {
-			System.out.println(ice.getMessage());
+			System.out.println(ice.getMessage() + " - Message display in Bank");
 		}
 		
 	}

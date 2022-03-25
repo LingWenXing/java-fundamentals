@@ -1,3 +1,5 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -61,11 +63,18 @@ class Launch4{
 public class LaunchDiv {
 
 	public static void main(String[] args) {
+//		try {
+//			Launch4 l4 = new Launch4();
+//			l4.fun4();
+//		}catch(ArithmeticException e) {
+//			System.out.println("main(): Enter a non-zero denominator");
+//		}
 		try {
-			Launch4 l4 = new Launch4();
-			l4.fun4();
-		}catch(ArithmeticException e) {
-			System.out.println("main(): Enter a non-zero denominator");
+			FileInputStream fis = new FileInputStream("C:\\Users\\wling4\\eclipse-workspace\\Demo\\src\\ATMSystem.java");
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		
