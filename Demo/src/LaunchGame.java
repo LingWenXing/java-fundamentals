@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class LaunchGame1 {
+public class LaunchGame {
 	static class TicTacToe {
 		static ArrayList<Integer> ppos =new ArrayList<Integer>();
 		static ArrayList<Integer> cpos =new ArrayList<Integer>();
