@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Display
  */
 public class Display extends HttpServlet {
-	protected void service(HttpServletResponse request, HttpServletResponse response) throws ServletException, IOException{
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		PrintWriter pw = response.getWriter();
 		pw.println("Hello everyone. I have written this message directly from a servlet");
 	}
+	
 
 }
