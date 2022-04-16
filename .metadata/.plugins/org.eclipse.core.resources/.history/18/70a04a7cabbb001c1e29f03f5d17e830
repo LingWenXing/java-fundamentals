@@ -1,0 +1,78 @@
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import java.util.Iterator;
+import java.util.List;
+
+public class HibernateManager {
+	public static SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+			.addAnnotatedClass(Employee.class).buildSessionFactory();
+	public static Session session = factory.getCurrentSession();
+	
+	public static void main(String[] args) {
+		System.out.println("Connection established to EMPLOYEE database");
+		
+//		HibernateManager.insert();
+//		HibernateManager.selectAllData();
+//		HibernateManager.selectByName();
+//		HibernateManager.deleteData(4);
+		HibernateManager.updateData(3, "Yahas");
+	}
+	
+	public static void insert(){ //inserts a row into the table
+		Employee emp = new Employee("Yashas","Aradhya", "yashas@gmail.com");
+		session.beginTransaction();
+		session.save(emp);
+		session.getTransaction().commit();
+		System.out.println("Employee inserted successfully");
+	}
+	
+	public static void selectAllData() {
+		session.beginTransaction();
+		List<Employee> empList = session.createQuery("from Employee").list();
+		System.out.println("Here is the list of all the employees");
+		for(Employee emp: empList) {
+			System.out.println(emp);
+		}
+		System.out.println("Employee details using Iterator");
+		Iterator<Employee> itr = empList.iterator();
+		while(itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+		session.getTransaction().commit();
+	}
+	
+	public static void selectData(int eid) { //select based on employee id
+		session.beginTransaction();
+		Employee e = (Employee)session.get(Employee.class, eid);
+		session.getTransaction().commit();
+		System.out.println(e);
+	}
+	public static void selectByName() {
+		session.beginTransaction();
+		List<Employee> empList = session.createQuery("from Employee e WHERE e.efirstname='Rudresh'").list();
+		Iterator<Employee> itr = empList.iterator();
+		while(itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+		session.getTransaction().commit();
+	}
+	public static void deleteData(int eid) { //delete based on employee id
+		session.beginTransaction();
+		Employee e = (Employee)session.get(Employee.class, eid);
+		session.delete(e);
+		session.getTransaction().commit();
+		System.out.println("Employee data deleted...");
+	}
+	
+	public static void updateData(int eid, String efirstname) {
+		session.beginTransaction();
+		Employee e = (Employee)session.get(Employee.class, eid);
+		e.setEfirstname(efirstname);
+		session.update(e);
+		session.getTransaction().commit();
+		System.out.println("Employee data updated..." + e);
+	}
+
+}

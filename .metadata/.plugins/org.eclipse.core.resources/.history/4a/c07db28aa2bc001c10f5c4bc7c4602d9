@@ -1,0 +1,178 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import oracle.jdbc.driver.OracleDriver;
+
+public class CustomerModel {
+	private String customerName;
+	private String customerUsername;
+	private String customerPassword;
+	private String customerEmail;
+	private String npassword;
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public String getCustomerUsername() {
+		return customerUsername;
+	}
+
+	public void setCustomerUsername(String customerUsername) {
+		this.customerUsername = customerUsername;
+	}
+
+	public String getCustomerPassword() {
+		return customerPassword;
+	}
+
+	public void setCustomerPassword(String customerPassword) {
+		this.customerPassword = customerPassword;
+	}
+
+	public String getCustomerEmail() {
+		return customerEmail;
+	}
+
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
+	}
+
+	public String getNpassword() {
+		return npassword;
+	}
+
+	public void setNpassword(String npassword) {
+		this.npassword = npassword;
+	}
+
+	int customerSignUp() {
+		try {
+			Connection con;
+			PreparedStatement pstmt;
+			DriverManager.registerDriver(new OracleDriver());
+			System.out.println("Driver loaded successfully - customerSignUp");
+			
+			con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE","SYSTEM","4dm1n007");
+			System.out.println("Connection established successfully - customerSignUp");
+			pstmt = con.prepareStatement("INSERT INTO CUSTOMER (C_NAME, C_USERNAME, C_PASSWORD, C_EMAIL) VALUES (?,?,?,?)");
+			
+			pstmt.setString(1, customerName);
+			pstmt.setString(2, customerUsername);
+			pstmt.setString(3, customerPassword);
+			pstmt.setString(4, customerEmail);
+			
+			int rows = pstmt.executeUpdate();
+			return rows;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	int verify() {
+		ResultSet result;
+		try {
+			Connection con;
+			PreparedStatement pstmt;
+			DriverManager.registerDriver(new OracleDriver());
+			System.out.println("Registered - verify");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE","SYSTEM","4dm1n007");
+			System.out.println("Connection successful - verify");
+			
+			pstmt = con.prepareStatement("SELECT * FROM CUSTOMER WHERE C_USERNAME = ?");
+			pstmt.setString(1, customerUsername);	
+			result = pstmt.executeQuery();
+	
+			// result valid
+			if(result.next()) {
+				customerName = result.getString("C_NAME");
+				if(result.getString("C_PASSWORD").equals(this.customerPassword)) {
+					return 1;
+				}else {
+					return 0;
+				}
+				
+			}else {
+				return -1;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+		
+	}
+	
+//	public int verifyCustomer(String username, String password) {
+//		Customer customer = getCustomerByCustomerUsername(username);         
+//        if(customer!=null) {
+//        	customerName = customer.getCustomerName();
+//        	if(customer.getCustomerPassword().equals(password)) {
+//    			return 1;
+//    		}else {
+//    			return 0;
+//    		}
+//        }else {
+//			return -1;
+//		}
+//    }
+//	
+//	public Customer getCustomerByCustomerUsername(String username) {
+//		Session session = HibernateManager.getSession();
+//        Transaction transaction = null;
+//        Customer customer = null;
+//        try {
+//        	transaction = session.getTransaction();
+//        	transaction.begin();
+//        	Query query= session.createQuery("from Customer where customerUsername = '"+username+"'");
+//        	customer = (Customer)query.uniqueResult();
+//            transaction.commit();
+//        } catch (Exception e) {
+//            if (transaction != null) {
+//            	transaction.rollback();
+//            }
+//            e.printStackTrace();
+//        } finally {
+//            session.close();
+//        }
+//        return customer;
+//    }
+	
+	int changePassword() {
+		try {
+			Connection con;
+			PreparedStatement pstmt;
+			DriverManager.registerDriver(new OracleDriver());
+			System.out.println("Driver loaded successfully - updatePassword");
+			
+			con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE","SYSTEM","4dm1n007");
+			System.out.println("Connection established successfully - changePassword");
+			pstmt = con.prepareStatement("UPDATE CUSTOMER SET C_PASSWORD=? WHERE C_USERNAME = ?");
+			
+			pstmt.setString(1, npassword);
+			pstmt.setString(2, customerUsername);
+			
+			int rows = pstmt.executeUpdate();
+			return rows;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+}

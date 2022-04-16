@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Model.java&apos; to &apos;BankApplicationSystem/src/main/java&apos;&#x0D;&#x0A;- Original project: &apos;SigninApplication&apos;&#x0D;&#x0A;- Destination element: &apos;BankApplicationSystem/src/main/java&apos;&#x0D;&#x0A;- Original element: &apos;Model.java&apos;" description="Copy file" destination="=BankApplicationSystem/src\/main\/java" element1="src/main/java/Model.java" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1649998983496" units="0" version="1.0"/>
+</session>

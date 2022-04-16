@@ -1,0 +1,20 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="Customer" table="Customer">
+		<id name="cid" type="int" column="c_id"></id>
+		<property name="customerName">
+			<column name="c_name" />
+		</property>
+		<property name="customerUsername">
+			<column name="c_username" />
+		</property>
+		<property name="customerPassword">
+			<column name="c_password" />
+		</property>
+		<property name="customerEmail">
+			<column name="c_email" />
+		</property>
+	</class>
+</hibernate-mapping>

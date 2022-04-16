@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Login</title>
+<style>
+body {
+    background-image: url("./images/car-auto-repair.png");
+    background-size: 100%;
+}
+form { 
+	margin: 0 auto; 
+	width:250px;
+	text-align: center;
+	vertical-align:middle;
+}
+</style>
+</head>
+<body>
+<form action="/CarServiceSystem/CustomerLogin">
+	<table>
+		<tr>
+			<td>UserName</td>
+			<td><input type="text" name="cun" required><br></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="cpwd" required><br></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Login"></td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

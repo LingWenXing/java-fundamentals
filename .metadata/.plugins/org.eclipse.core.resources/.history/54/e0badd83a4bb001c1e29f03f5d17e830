@@ -1,0 +1,20 @@
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HibernateManager {
+
+	public static void main(String[] args) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class).buildSessionFactory();
+		Session session = factory.getCurrentSession();
+		System.out.println("Connection established to EMPLOYEE database");
+		
+		Employee emp = new Employee("Rudresh","Aradhya", "rudresh@gmail.com");
+		session.beginTransaction();
+		session.save(emp);
+		session.getTransaction().commit();
+		System.out.println("Employee inserted successfully");
+
+	}
+
+}

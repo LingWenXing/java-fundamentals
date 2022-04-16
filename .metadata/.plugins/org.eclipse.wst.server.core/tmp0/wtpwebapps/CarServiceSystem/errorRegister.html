@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Register Error</title>
+<style>
+body {
+    background-image: url("./images/car-auto-repair.png");
+    background-size: 100%;
+}
+form { 
+	margin: 0 auto; 
+	width:250px;
+	text-align: center;
+	vertical-align:middle;
+}
+</style>
+</head>
+<body>
+	<h1>Password and confirm password do not match</h1>
+	<form action="/CarServiceSystem/CustomerRegister">
+		<table>
+			<tr>
+				<td>Name</td>
+				<td><input type="text" name="name" required><br></td>
+			</tr>
+			<tr>
+				<td>UserName</td>
+				<td><input type="text" name="cun" required><br></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="password" name="cpwd" required><br></td>
+			</tr>
+			<tr>
+				<td>Confirm Password</td>
+				<td><input type="password" name="ccpwd" required><br></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="text" name="cemail" required><br></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Customer Register"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

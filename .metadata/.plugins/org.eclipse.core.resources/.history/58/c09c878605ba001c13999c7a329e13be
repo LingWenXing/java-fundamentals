@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Login Success</title>
+</head>
+<body>
+	Dear <%out.print(session.getAttribute("cname"));%>, You have successfully logged in<br>
+	<a href="/CarServiceSystem/updateCarDetails.html">Update Car Details</a>
+	<a href="/CarServiceSystem/serviceRequest.html">Service Request</a>
+	<a href="/CarServiceSystem/checkStatus.html">Check for an update</a>
+</body>
+</html>

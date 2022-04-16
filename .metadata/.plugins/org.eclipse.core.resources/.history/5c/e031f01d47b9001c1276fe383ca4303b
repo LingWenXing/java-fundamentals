@@ -1,0 +1,208 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import oracle.jdbc.driver.OracleDriver;
+
+public class Model {
+	private String aun;
+	private String apwd;
+	
+	Connection con;
+	
+	private String cname;
+	private String cun;
+	private String cpwd;
+	private String cemail;
+	
+	private String carmodel;
+	private String cartype;
+	private String carregnumber;
+	private String carService;
+	private String carStatus;
+	
+	public String getCarService() {
+		return carService;
+	}
+	public void setCarService(String carService) {
+		this.carService = carService;
+	}
+	public String getCarStatus() {
+		return carStatus;
+	}
+	public void setCarStatus(String carStatus) {
+		this.carStatus = carStatus;
+	}
+	
+	public String getCarmodel() {
+		return carmodel;
+	}
+	public void setCarmodel(String carmodel) {
+		this.carmodel = carmodel;
+	}
+	public String getCartype() {
+		return cartype;
+	}
+	public void setCartype(String cartype) {
+		this.cartype = cartype;
+	}
+	public String getCarregnumber() {
+		return carregnumber;
+	}
+	public void setCarregnumber(String carregnumber) {
+		this.carregnumber = carregnumber;
+	}
+	
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getCun() {
+		return cun;
+	}
+	public void setCun(String cun) {
+		this.cun = cun;
+	}
+	public String getCpwd() {
+		return cpwd;
+	}
+	public void setCpwd(String cpwd) {
+		this.cpwd = cpwd;
+	}
+	public String getCemail() {
+		return cemail;
+	}
+	public void setCemail(String cemail) {
+		this.cemail = cemail;
+	}
+	
+	public String getAun() {
+		return aun;
+	}
+	public void setAun(String aun) {
+		this.aun = aun;
+	}
+	public String getApwd() {
+		return apwd;
+	}
+	public void setApwd(String apwd) {
+		this.apwd = apwd;
+	}
+	
+	Model(){
+		try {
+			DriverManager.registerDriver(new OracleDriver());
+			System.out.println("Driver loaded successfully");
+			
+			con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE","SYSTEM","4dm1n007");
+			System.out.println("Connection established successfully");
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	int adminVerify() {
+		try {
+			PreparedStatement pstmt = con.prepareStatement("SELECT * ADMINDB WHERE AUN = ?");
+			pstmt.setString(1, aun);
+			ResultSet result = pstmt.executeQuery();
+			if(result.next()) {
+				String dapwd = result.getString("apwd");
+				if(dapwd.equals(this.apwd)) {
+					return 1;
+				}else {
+					return 0;
+				}
+				
+			}else {
+				return -1;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	int addCustomerDetails() {
+		try {
+			PreparedStatement pstmt = con.prepareStatement("INSERT INTO CUSTOMERDB VALUES(?,?,?,?)");
+			pstmt.setString(1, cname);
+			pstmt.setString(2, cun);
+			pstmt.setString(3, cpwd);
+			pstmt.setString(4, cemail);
+			
+			int rows = pstmt.executeUpdate();
+			return rows;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+	}
+	
+	int customerVerify() {
+		try {
+			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM CUSTOMERDB WHERE CUN = ?");
+			pstmt.setString(1, cun);
+			ResultSet result = pstmt.executeQuery();
+			// result valid
+			if(result.next()) {
+				cname = result.getString("cname");
+				if(result.getString(3).equals(this.cpwd)) {
+					return 1;
+				}else {
+					return 0;
+				}
+				
+			}else {
+				return -1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	int updateCarDetails() {
+		try {
+			PreparedStatement pstmt = con.prepareStatement("INSERT INTO CARDETAILS VALUES(?,?,?,?,?,?)");
+			pstmt.setString(1, cun);
+			pstmt.setString(2, carmodel);
+			pstmt.setString(3, cartype);
+			pstmt.setString(4, carregnumber);
+			pstmt.setString(5, carService);
+			pstmt.setString(6, carStatus);
+			
+			int rows = pstmt.executeUpdate();
+			return rows;
+			
+		} catch (Exception e) {
+			
+		}
+		return 0;
+	}
+	
+	int updateCarService() {
+		try {
+			PreparedStatement pstmt = con.prepareStatement("UPDATE CARDETAILS SET SERVICE=?, STATUS=? WHERE CUN=?");
+			pstmt.setString(1, carService);
+			pstmt.setString(2, "false");
+			pstmt.setString(3, cun);
+			
+			int rows = pstmt.executeUpdate();
+			return rows;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+	}
+	
+}

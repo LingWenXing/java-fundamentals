@@ -1,0 +1,56 @@
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
+import oracle.jdbc.driver.OracleDriver;
+
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.*;
+public class HibernateManager  {
+	public static SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+			.addAnnotatedClass(Customer.class).buildSessionFactory();
+	public static Session session = factory.getCurrentSession();
+	
+	public void customerSignUp(Customer c) {  //inserts a row into the table
+		session.beginTransaction();
+		session.save(c);
+		session.getTransaction().commit();
+		System.out.println("Insertion success to Customer table...");
+	}
+	
+	public void selectData(Serializable cid) { //select based on Customer id
+		session.beginTransaction();
+		Customer c = (Customer)session.get(Customer.class, cid);
+		session.getTransaction().commit();
+		System.out.println(c);
+	}
+	
+	public void deleteData(Serializable cid) { //delete based on student id
+		session.beginTransaction();
+		Customer c = (Customer)session.get(Customer.class, cid);
+		session.delete(c);
+		session.getTransaction().commit();
+		System.out.println("Customer data deleted...");
+	}
+	
+	public void updateData(Serializable cid, String cname) {
+		session.beginTransaction();
+		Customer c = (Customer)session.get(Customer.class, cid);
+		c.setCustomerName(cname);
+		session.update(c);
+		session.getTransaction().commit();
+		System.out.println("Customer data updated..." + c);
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+	
+
+}

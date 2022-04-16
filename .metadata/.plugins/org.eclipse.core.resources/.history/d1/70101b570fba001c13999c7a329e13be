@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Service Request</title>
+</head>
+<body>
+	<form action = "/CarServiceSystem/ServiceRequest">
+		Request for a Service: <input type="text" name="servicerequest">
+		<input type="submit" name="Service request">
+	</form>
+</body>
+</html>

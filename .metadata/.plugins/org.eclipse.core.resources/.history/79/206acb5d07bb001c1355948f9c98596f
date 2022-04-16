@@ -1,0 +1,7 @@
+package com.dxc.springIOC;
+
+public class WebTechTrainer {
+	String getDailyTrainingSession(){
+		return "Creating multiple websites will make things easier";
+	}
+}

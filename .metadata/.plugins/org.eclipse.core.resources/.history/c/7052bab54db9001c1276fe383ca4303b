@@ -1,0 +1,9 @@
+
+public class CustomerCarDetails {
+	String username;
+	String model;
+	String type;
+	String service;
+	
+	
+}

@@ -1,0 +1,15 @@
+
+public class StudentApp {
+
+	public static void main(String[] args) {
+		Student s = new Student();
+		s.setSid(1);
+		s.setsName("WX");
+		
+		HibernateManager hm = new HibernateManager();
+		hm.connect();
+		hm.insert(s);
+
+	}
+
+}

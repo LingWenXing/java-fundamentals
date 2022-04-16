@@ -1,0 +1,19 @@
+package com.dxc.springIOC;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MyAppIOC {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("appContext.xml");
+		
+		Trainer jt = (Trainer)context.getBean("jtrainer");
+		System.out.println(jt.getDailyTrainingSession());
+		
+		Trainer wt = (Trainer)context.getBean("w");
+		System.out.println(wt.getDailyTrainingSession());
+	}
+
+}

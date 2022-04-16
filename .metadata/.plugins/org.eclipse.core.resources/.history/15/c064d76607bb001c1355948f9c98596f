@@ -1,0 +1,7 @@
+package com.dxc.springIOC;
+
+public class JavaTrainer implements Trainer {
+	String getDailyTrainingSession(){
+		return "Practice and execute Java programs everyday";
+	}
+}

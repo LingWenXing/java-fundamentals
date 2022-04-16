@@ -1,0 +1,7 @@
+
+public class Customer {
+	String name;
+	String username;
+	String password;
+	String email;
+}

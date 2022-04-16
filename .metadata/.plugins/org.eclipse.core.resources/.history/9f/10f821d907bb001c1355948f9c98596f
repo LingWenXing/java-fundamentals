@@ -1,0 +1,18 @@
+package com.dxc.springIOC;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MyAppIOC {
+
+	public static void main(String[] args) {
+		
+		new ClassPathXmlApplicationContext();
+		
+		JavaTrainer jt = new JavaTrainer();
+		System.out.println(jt.getDailyTrainingSession());
+		
+		WebTechTrainer wt = new WebTechTrainer();
+		System.out.println(wt.getDailyTrainingSession());
+	}
+
+}

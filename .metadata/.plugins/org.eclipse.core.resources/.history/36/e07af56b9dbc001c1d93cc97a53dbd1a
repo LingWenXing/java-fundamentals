@@ -1,0 +1,71 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import oracle.jdbc.driver.OracleDriver;
+
+public class CustomerAccountModel {
+	private int accountNumber;
+	private int customerId;
+	private String customerName;
+	private int accountBalance;
+
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public int getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountBalance(int accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
+	int createBankAccount() {
+		try {
+			Connection con;
+			PreparedStatement pstmt;
+			DriverManager.registerDriver(new OracleDriver());
+			System.out.println("Driver loaded successfully - createBankAccount");
+			
+			con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE","SYSTEM","4dm1n007");
+			System.out.println("Connection established successfully - createBankAccount");
+			pstmt = con.prepareStatement("INSERT INTO ACCOUNT (ACCOUNT_NUMBER, CUSTOMER_ID, CUSTOMER_NAME, ACCOUNT_BALANCE) VALUES (?,?,?,?)");
+			
+			pstmt.setInt(1, accountNumber);
+			pstmt.setInt(2, customerId);
+			pstmt.setString(3, customerName);
+			pstmt.setInt(4, accountBalance);
+			
+			int rows = pstmt.executeUpdate();
+			return rows;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>WHYK Banking | SG.</title>
+</head>
+<body>
+	<a href="/BankApplicationSystem/collectData.html">Create Account?</a><br>
+	<a href="/BankApplicationSystem/Signin.html">Sign in</a><br>
+	
+	<header>
+		<div>
+			<div>
+				<h1><span>WHYK</span> Banking SG.</h1>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="/BankApplicationSystem/signUpPage.html">Create New Account</a></li>
+					<li><a href="/BankApplicationSystem/loginPage.html">Login</a></li>
+				</ul> 	
+			</nav>
+		</div>
+	</header>
+</body>
+</html>

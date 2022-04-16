@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>WHYK Bank | Singapore</title>
+</head>
+<body>
+	<form action="/BankApplicationSystem/ChangePassword">
+		<table>
+			<tr>
+				<td>Enter new Password</td>
+				<td><input type="text" name="npassword"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Update Password"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Status</title>
+</head>
+<body>
+	<form action = "/CarServiceSystem/UpdateStatus">
+		<input type="text" name="cun">
+		<input type="submit" name="Update Status">
+	</form>
+</body>
+</html>

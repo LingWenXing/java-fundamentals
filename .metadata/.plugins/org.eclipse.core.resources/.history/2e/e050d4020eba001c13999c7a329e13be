@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Car Service System (Main)</title>
+<style>
+body {
+    background-image: url("./images/car-auto-repair.png");
+    background-size: 100%;
+}
+.masterContainer{
+	display:table;
+	height:100%;
+	margin: 0 auto;
+}
+.container{
+	display:table-cell;
+	vertical-align:middle;
+}
+</style>
+</head>
+<body>
+<form action="/CarServiceSystem/adminLogin.html">
+	<input type="submit" value=admin>
+</form>
+<form action="/CarServiceSystem/customerWelcome.html">
+	<input type="submit" value=customer>
+</form>
+</body>
+</html>

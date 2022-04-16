@@ -1,0 +1,82 @@
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
+import oracle.jdbc.driver.OracleDriver;
+
+import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.*;
+public class HibernateManager  {
+	public static SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+			.addAnnotatedClass(Customer.class).buildSessionFactory();
+	public static Session session = factory.getCurrentSession();
+	
+	public void insert(Customer c) {  //inserts a row into the table
+		session.beginTransaction();
+		session.save(c);
+		session.getTransaction().commit();
+		System.out.println("Insertion success...");
+	}
+	
+	int customerSignUp() {
+		try {
+			Connection con;
+			PreparedStatement pstmt;
+			DriverManager.registerDriver(new OracleDriver());
+			System.out.println("Driver loaded successfully - customerSignUp");
+			
+			con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE","SYSTEM","4dm1n007");
+			System.out.println("Connection established successfully - customerSignUp");
+			pstmt = con.prepareStatement("INSERT INTO CUSTOMER (C_NAME, C_USERNAME, C_PASSWORD, C_EMAIL) VALUES (?,?,?,?)");
+			
+			pstmt.setString(1, customerName);
+			pstmt.setString(2, customerUsername);
+			pstmt.setString(3, customerPassword);
+			pstmt.setString(4, customerEmail);
+			
+			int rows = pstmt.executeUpdate();
+			return rows;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public void selectData(Serializable cid) { //select based on Customer id
+		session.beginTransaction();
+		Customer c = (Customer)session.get(Customer.class, cid);
+		session.getTransaction().commit();
+		System.out.println(c);
+	}
+	
+	public void deleteData(Serializable cid) { //delete based on student id
+		session.beginTransaction();
+		Customer c = (Customer)session.get(Customer.class, cid);
+		session.delete(c);
+		session.getTransaction().commit();
+		System.out.println("Customer data deleted...");
+	}
+	
+	public void updateData(Serializable cid, String cname) {
+		session.beginTransaction();
+		Customer c = (Customer)session.get(Customer.class, cid);
+		c.setCustomerName(cname);
+		session.update(c);
+		session.getTransaction().commit();
+		System.out.println("Customer data updated..." + c);
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+	
+
+}

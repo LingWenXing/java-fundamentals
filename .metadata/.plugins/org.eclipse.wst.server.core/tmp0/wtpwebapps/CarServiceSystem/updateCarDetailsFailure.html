@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Car Detail</title>
+<style>
+body {
+    background-image: url("./images/car-auto-repair.png");
+    background-size: 100%;
+}
+form { 
+	margin: 0 auto; 
+	width:250px;
+	text-align: center;
+	vertical-align:middle;
+}
+</style>
+</head>
+<body>
+<h1>Update fails</h1>
+	<form action="/CarServiceSystem/UpdateCarDetails">
+		<table>
+			<tr>
+				<td>Car Model</td>
+				<td><input type="text" name="carmodel" required><br></td>
+			</tr>
+			<tr>
+				<td>Car Type</td>
+				<td><input type="text" name="cartype" required><br></td>
+			</tr>
+			<tr>
+				<td>Car Registration Number</td>
+				<td><input type="text" name="carregnumber" required><br></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Update Car Details"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

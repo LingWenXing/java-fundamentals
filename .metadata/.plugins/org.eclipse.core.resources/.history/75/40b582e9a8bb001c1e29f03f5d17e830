@@ -1,0 +1,28 @@
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import java.util.List;
+
+public class HibernateManager {
+
+	public static void main(String[] args) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+								.addAnnotatedClass(Employee.class).buildSessionFactory();
+		Session session = factory.getCurrentSession();
+		System.out.println("Connection established to EMPLOYEE database");
+		
+//		Employee emp = new Employee("Yashas","Aradhya", "yashas@gmail.com");
+//		session.beginTransaction();
+//		session.save(emp);
+//		session.getTransaction().commit();
+//		System.out.println("Employee inserted successfully");
+		
+		session.beginTransaction();
+		List<Employee> empList = session.createQuery("from Employee").list();
+		for(Employee emp: empList) {
+			System.out.println(emp);
+		}
+		session.getTransaction().commit();
+	}
+
+}

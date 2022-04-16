@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Login Failure</title>
+<style>
+body {
+    background-image: url("./images/car-auto-repair.png");
+    background-size: 100%;
+}
+form { 
+	margin: 0 auto; 
+	width:250px;
+	text-align: center;
+	vertical-align:middle;
+}
+</style>
+</head>
+<body>
+<p>You are not a customer yet.</p>
+</body>
+</html>

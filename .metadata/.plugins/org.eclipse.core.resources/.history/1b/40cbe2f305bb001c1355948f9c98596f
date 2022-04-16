@@ -1,0 +1,11 @@
+package com.dxc.springIOC;
+
+public class MyAppIOC {
+
+	public static void main(String[] args) {
+		JavaTrainer jt = new JavaTrainer();
+		System.out.println(jt.getDailyTrainingSession());
+
+	}
+
+}
